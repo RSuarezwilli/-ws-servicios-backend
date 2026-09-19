@@ -305,6 +305,35 @@
 
 <button class="to-top" id="to-top" aria-label="Volver arriba">↑</button>
 
+<div class="chat-widget">
+  <button class="chat-bubble" id="chat-bubble" aria-label="Abrir chat de ayuda">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-4-1L3 20l1-4a8.38 8.38 0 0 1-1-4 8.5 8.5 0 0 1 8.5-8.5h1A8.38 8.38 0 0 1 21 11.5z"/></svg>
+  </button>
+
+  <div class="chat-panel" id="chat-panel">
+    <div class="chat-header">
+      <div>
+        <div class="chat-title">Asistente WS. SERVICIOS</div>
+        <div class="chat-subtitle">Preguntas frecuentes al instante</div>
+      </div>
+      <button class="chat-close" id="chat-close" aria-label="Cerrar chat">✕</button>
+    </div>
+
+    <div class="chat-messages" id="chat-messages"></div>
+
+    <div class="chat-quick-replies" id="chat-quick-replies"></div>
+
+    <form class="chat-input-row" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+      <button type="submit" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+
 <script src="script.js"></script>
+<script src="chatbot.js"></script>
 </body>
 </html>
