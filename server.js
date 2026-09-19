@@ -18,17 +18,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Crear una solicitud nueva desde el formulario del sitio.
 app.post('/api/solicitudes', async (req, res) => {
-  const { nombre, telefono, direccion, servicio, detalle } = req.body || {};
+  const { nombre, telefono, direccion, servicio, detalle, correo } = req.body || {};
 
   if (!nombre || !telefono || !direccion || !servicio) {
     return res.status(400).json({ ok: false, error: 'Faltan campos obligatorios.' });
+    
+  }
+
+    const soloNumeros = /^[0-9]{7,10}$/;
+  if (!soloNumeros.test(telefono)) {
+    return res.status(400).json({ ok: false, error: 'El teléfono debe tener entre 7 y 10 números.' });
+  }
+
+  if (correo) {
+    const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formatoCorreo.test(correo)) {
+      return res.status(400).json({ ok: false, error: 'El correo no tiene un formato válido.' });
+    }
   }
 
   try {
-    const id = crearSolicitud({ nombre, telefono, direccion, servicio, detalle });
+    const id = crearSolicitud({ nombre, telefono, direccion, servicio, detalle, correo });
 
     try {
-      await notificarNuevaSolicitud({ nombre, telefono, direccion, servicio, detalle });
+      await notificarNuevaSolicitud({ nombre, telefono, direccion, servicio, detalle, correo });
     } catch (mailErr) {
       // La solicitud ya se guardó bien; que falle el correo no debe
       // tumbar la respuesta al usuario. Solo lo dejamos en el log.

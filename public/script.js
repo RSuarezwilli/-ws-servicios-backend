@@ -176,10 +176,30 @@ document.getElementById('visit-form').addEventListener('submit', async function 
   const datos = {
     nombre: document.getElementById('f-name').value.trim(),
     telefono: document.getElementById('f-phone').value.trim(),
+    correo: document.getElementById('f-email').value.trim(),
     direccion: document.getElementById('f-address').value.trim(),
     servicio: document.getElementById('f-service').value,
     detalle: document.getElementById('f-detail').value.trim()
   };
+
+  // --- Validaciones antes de enviar ---
+  const soloNumeros = /^[0-9]{7,10}$/;
+  if (!soloNumeros.test(datos.telefono)) {
+    status.style.display = 'block';
+    status.textContent = 'El teléfono debe tener entre 7 y 10 números, sin espacios ni letras.';
+    return;
+  }
+
+  if (datos.correo) {
+    const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formatoCorreo.test(datos.correo)) {
+      status.style.display = 'block';
+      status.textContent = 'Ese correo no parece válido. Revísalo o déjalo vacío.';
+      return;
+    }
+  }
+
+  status.style.display = 'block';
 
   status.style.display = 'block';
   status.textContent = 'Enviando solicitud...';

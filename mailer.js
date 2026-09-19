@@ -45,6 +45,7 @@ Nueva solicitud de visita — WS. SERVICIOS
 
 Nombre: ${solicitud.nombre}
 Teléfono: ${solicitud.telefono}
+Correo: ${solicitud.correo || '(no dejó correo)'}
 Dirección/barrio: ${solicitud.direccion}
 Servicio: ${solicitud.servicio}
 Detalle: ${solicitud.detalle || '(sin detalle)'}

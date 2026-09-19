@@ -23,7 +23,7 @@ function guardarTodas(lista) {
   fs.writeFileSync(DB_PATH, JSON.stringify(lista, null, 2), 'utf-8');
 }
 
-export function crearSolicitud({ nombre, telefono, direccion, servicio, detalle }) {
+export function crearSolicitud({ nombre, telefono, direccion, servicio, detalle, correo }) {
   const lista = leerTodas();
   const nuevoId = lista.length ? lista[lista.length - 1].id + 1 : 1;
 
@@ -34,6 +34,7 @@ export function crearSolicitud({ nombre, telefono, direccion, servicio, detalle 
     direccion,
     servicio,
     detalle: detalle || '',
+    correo: correo || '',
     creado_en: new Date().toLocaleString('es-CO')
   };
 
